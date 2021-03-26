@@ -36,11 +36,6 @@ class _App1State extends State<App1> {
         _questionIndex++;
       });
       print(_questionIndex);
-    } else {
-      setState(() {
-        _questionIndex = 0;
-      });
-      print(_questionIndex);
     }
   }
 
