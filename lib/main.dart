@@ -16,21 +16,37 @@ class _App1State extends State<App1> {
   final _questions = const [
     {
       'questionText': 'What\'s your favourite color?',
-      'answers': ['Black', 'Red', 'Green', 'White'],
+      'answers': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'Red', 'score': 7},
+        {'text': 'Green', 'score': 4},
+        {'text': 'White', 'score': 1}
+      ],
     },
     {
       'questionText': 'What\'s your favourite animal?',
-      'answers': ['Cat', 'Dog', 'Lion', 'Rat'],
+      'answers': [
+        {'text': 'Cat', 'score': 10},
+        {'text': 'Dog', 'score': 7},
+        {'text': 'Lion', 'score': 4},
+        {'text': 'Rat', 'score': 1}
+      ],
     },
     {
       'questionText': 'Who\'s your favourite student?',
-      'answers': ['Igor', 'Igor', 'Igor', 'Igor'],
+      'answers': [
+        {'text': 'Igor :)', 'score': 4},
+        {'text': 'Igor :S', 'score': 3},
+        {'text': 'Igor :/', 'score': 2},
+        {'text': 'Igor :(', 'score': 1}
+      ],
     },
   ];
 
   var _questionIndex = 0; // Used to control what question appear on the screen.
-
-  void _answerQuestion() {
+  var _totalScore = 0;
+  void _answerQuestion(int score) {
+    _totalScore += score;
     setState(() {
       _questionIndex++;
     });
@@ -54,6 +70,6 @@ class _App1State extends State<App1> {
                     questions: _questions,
                     answerQuestion: _answerQuestion,
                   )
-                : Result()));
+                : Result(_totalScore)));
   }
 }
