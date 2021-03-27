@@ -45,6 +45,14 @@ class _App1State extends State<App1> {
 
   var _questionIndex = 0; // Used to control what question appear on the screen.
   var _totalScore = 0;
+
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
   void _answerQuestion(int score) {
     _totalScore += score;
     setState(() {
@@ -62,7 +70,7 @@ class _App1State extends State<App1> {
     return MaterialApp(
         home: Scaffold(
             appBar: AppBar(
-              title: Text('App1 Menu'),
+              title: Text('App1 - QuizApp'),
             ),
             body: _questionIndex < _questions.length
                 ? Quiz(
@@ -70,6 +78,9 @@ class _App1State extends State<App1> {
                     questions: _questions,
                     answerQuestion: _answerQuestion,
                   )
-                : Result(_totalScore)));
+                : Result(
+                    totalScore: _totalScore,
+                    reset: _resetQuiz,
+                  )));
   }
 }
